@@ -21,7 +21,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "localhost";
+const defaultNetwork = "sepolia";
 
 function mnemonic() {
   try {
@@ -49,6 +49,12 @@ module.exports = {
         notice no mnemonic here? it will just use account 0 of the hardhat node to deploy
         (you can put in a mnemonic here to set the deployer locally)
       */
+    },
+    sepolia: {
+      url: "https://sepolia.infura.io/v3/89923c28c301487d92b29ff7f191eac3", //<---- YOUR INFURA ID! (or it won't work)
+      accounts: {
+        mnemonic: mnemonic(),
+      },
     },
     rinkeby: {
       url: "https://rinkeby.infura.io/v3/568af3da01a043ecb2ac80bf69927b38", //<---- YOUR INFURA ID! (or it won't work)

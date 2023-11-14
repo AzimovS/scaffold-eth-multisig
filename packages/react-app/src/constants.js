@@ -38,6 +38,14 @@ export const NETWORKS = {
         rpcUrl: `https://mainnet.infura.io/v3/${INFURA_ID}`,
         blockExplorer: "https://etherscan.io/",
     },
+    sepolia: {
+        name: "sepolia",
+        color: "#e0d068",
+        chainId: 11155111,
+        rpcUrl: `https://sepolia.infura.io/v3/${INFURA_ID}`,
+        faucet: "https://faucet.sepolia.io/",
+        blockExplorer: "https://sepolia.etherscan.io/",
+    },
     kovan: {
         name: "kovan",
         color: '#7003DD',

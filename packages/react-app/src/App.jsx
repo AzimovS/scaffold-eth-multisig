@@ -47,10 +47,10 @@ import { CreateTransaction, Transactions, Owners, FrontPage } from "./views";
 */
 
 /// 📡 What chain are your contracts deployed to?
-const targetNetwork = NETWORKS["localhost"]; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+const targetNetwork = NETWORKS["sepolia"]; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
 
-// const poolServerUrl = "https://backend.multisig.holdings:49832/";
-const poolServerUrl = "http://localhost:49832/";
+const poolServerUrl = "https://backend.multisig.holdings:49832/";
+// const poolServerUrl = "http://localhost:49832/";
 
 // 😬 Sorry for all the console logging
 const DEBUG = true;
@@ -61,11 +61,12 @@ if (DEBUG) console.log("📡 Connecting to Mainnet Ethereum");
 // const mainnetProvider = new InfuraProvider("mainnet",INFURA_ID);
 //
 // attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
-const scaffoldEthProvider = new JsonRpcProvider("https://rpc.scaffoldeth.io:48544");
+const scaffoldEthProvider = null && new JsonRpcProvider("https://rpc.scaffoldeth.io:48544");
 const mainnetInfura = new JsonRpcProvider("https://mainnet.infura.io/v3/" + INFURA_ID);
 // ( ⚠️ Getting "failed to meet quorum" errors? Check your INFURA_I
 
 // 🏠 Your local provider is usually pointed at your local blockchain
+console.log(targetNetwork);
 const localProviderUrl = targetNetwork.rpcUrl;
 // as you deploy to other networks you can set REACT_APP_PROVIDER=https://dai.poa.network in packages/react-app/.env
 const localProviderUrlFromEnv = process.env.REACT_APP_PROVIDER ? process.env.REACT_APP_PROVIDER : localProviderUrl;
@@ -108,7 +109,7 @@ function App(props) {
   const yourMainnetBalance = useBalance(mainnetProvider, address);
 
   // Load in your local 📝 contract and read a value from it:
-  const readContracts = useContractLoader(localProvider);
+  const readContracts = useContractLoader(userProvider);
 
   // If you want to make 🔐 write transactions to your contracts, use the userProvider:
   const writeContracts = useContractLoader(userProvider);
